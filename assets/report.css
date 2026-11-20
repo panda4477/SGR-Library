@@ -1,0 +1,49 @@
+/* SGR Library V3.3 printable report (served as a file because CSP blocks inline styles). */
+@font-face { font-family: ThaiSans; src: url('/assets/thai-sans.woff') format('woff'); font-weight: 400; }
+@font-face { font-family: ThaiSans; src: url('/assets/thai-sans-bold.woff') format('woff'); font-weight: 700; }
+@page { size: A4 landscape; margin: 12mm; }
+body.report { font-family: ThaiSans, Tahoma, Arial, sans-serif; color: #15293a; margin: 20px; line-height: 1.5; }
+.print-bar { display: flex; gap: 10px; align-items: center; margin-bottom: 18px; }
+.print-bar button { font: inherit; font-weight: 700; padding: 10px 18px; border: 0; border-radius: 10px; background: #16456e; color: #fff; cursor: pointer; }
+.print-bar a { color: #1f5f96; }
+header p:first-child { margin: 0; color: #1f5f96; font-weight: 700; font-size: 13px; }
+h1 { font-size: 22px; margin: 4px 0; }
+p { font-size: 13px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th, td { padding: 7px; border: 1px solid #aab4bd; text-align: left; }
+thead { background: #e9eef3; }
+.empty { padding: 20px; border: 1px dashed #aab4bd; text-align: center; }
+.empty svg { display: none; }
+.foot { margin-top: 16px; color: #5d6e7e; }
+@media print { .print-bar { display: none; } body.report { margin: 0; } }
+@media (max-width: 620px) { body.report { margin: 10px; } table { font-size: 10px; } th, td { padding: 4px; } }
+
+/* V3.3.2: one sheet per student (A4 portrait, one page each when printed) */
+@page sheet { size: A4 portrait; margin: 12mm; }
+.sheet { page: sheet; max-width: 980px; margin: 0 auto 28px; padding: 22px 24px; border: 1px solid #d5dde5; border-radius: 12px; background: #fff; break-after: page; }
+.sheet:last-of-type { break-after: auto; }
+.sheet header { padding-bottom: 10px; margin-bottom: 14px; border-bottom: 2px solid #16456e; }
+.sheet h2 { font-size: 15px; margin: 16px 0 6px; color: #16456e; }
+.who { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 18px; margin: 0 0 14px; }
+.who div { display: flex; flex-direction: column; padding: 6px 0; border-bottom: 1px dotted #c4ccd4; }
+.who dt { font-size: 11px; color: #5d6e7e; }
+.who dd { margin: 0; font-weight: 700; font-size: 14px; overflow-wrap: anywhere; }
+.boxes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 6px; }
+.box { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border: 1px solid #c4ccd4; border-radius: 10px; background: #f4f7fa; }
+.box span { font-size: 12px; color: #5d6e7e; }
+.box b { font-size: 20px; line-height: 1.2; }
+.box small { font-size: 11px; color: #5d6e7e; }
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 20px; }
+.cols .empty { padding: 10px; font-size: 12px; }
+.sign { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 34px; font-size: 13px; }
+body.each .foot { max-width: 980px; margin: 0 auto; }
+@media print {
+  .sheet { max-width: none; margin: 0; padding: 0; border: 0; border-radius: 0; }
+  .box { background: #fff; }
+  table, .box { break-inside: avoid; }
+}
+@media (max-width: 620px) {
+  .sheet { padding: 14px; }
+  .who, .boxes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cols { grid-template-columns: minmax(0, 1fr); }
+}

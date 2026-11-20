@@ -1,0 +1,29 @@
+server {
+    listen @PORT@ default_server;
+    server_name @DOMAIN@ _;
+    root @APP@/public/@PORTAL@;
+    absolute_redirect off;
+    port_in_redirect off;
+    if ($sgr_v3_https_base != "") { return 308 $sgr_v3_https_base$request_uri; }
+    server_tokens off;
+    client_max_body_size 10m;
+    error_page 500 502 503 504 =500 /_sgr_service_unavailable;
+    error_page 413 /_sgr_too_large;
+    location = /_sgr_service_unavailable { internal; default_type text/html; charset utf-8; alias @APP@/assets/500.html; }
+    location = /_sgr_too_large { internal; default_type text/html; charset utf-8; alias @APP@/assets/413.html; }
+    location ^~ /assets/ {
+        alias @APP@/assets/;
+        autoindex off;
+        add_header X-Content-Type-Options nosniff always;
+        error_page 403 404 =404 /_sgr_missing_asset;
+    }
+    location = /_sgr_missing_asset { internal; default_type text/html; charset utf-8; alias @APP@/assets/404.html; }
+    location / {
+        include @FASTCGI_PARAMS@;
+        fastcgi_param SCRIPT_FILENAME $document_root/index.php;
+        fastcgi_param SGR_TRUSTED_HTTPS $sgr_v3_secure;
+        fastcgi_param HTTP_PROXY "";
+        fastcgi_pass @FPM@;
+        fastcgi_read_timeout 60s;
+    }
+}

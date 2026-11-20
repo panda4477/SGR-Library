@@ -514,4 +514,4 @@ API แบบอ่านข้อมูล: `GET /api/me`, `GET /api/student/sc
 
 ---
 
-SGR Library V3.3.3 
+SGR Library V3.3.3 · ศกร.ระดับตำบลบ้านใหม่ อำเภอสามพราน จังหวัดนครปฐม
