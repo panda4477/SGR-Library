@@ -1,0 +1,10 @@
+# Server secrets and runtime data never belong in the repository.
+settings.ini
+!config/settings.example.ini
+*.tar
+*.sql.gz
+/backups/
+storage/uploads/*
+!storage/uploads/.keep
+.DS_Store
+Thumbs.db

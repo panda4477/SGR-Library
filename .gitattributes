@@ -1,0 +1,17 @@
+# Keep LF line endings on every platform: shell scripts and SQL break with CRLF.
+* text=auto eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.php text eol=lf
+*.sql text eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.pdf binary
+*.zip binary
